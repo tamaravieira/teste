@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+    <title>Notas</title>
+    <style>
+      a.nav-link {
+        color: white;
+        font-size: 20px;
+      }
+      h1.header {
+        padding-top: 10px;
+        font-size: 30px;
+        font-family: 'Chelsea Market', cursive;
+        color: white;
+        text-align: center;
+        
+      }
+
+      div#footer h5,p {
+        color: white;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+    
+      
+      <div id="nav" style="background-color: rgb(84, 84, 156); height: 100px;">
+        <h1 class="header">Centro Educacional Vieira Aráujo</h1>
+      <ul class="nav nav-pills" style="padding-top: 11px;">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Unidades</a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Campo Grande</a>
+            <a class="dropdown-item" href="#">Barra da Tijuca</a>
+            <a class="dropdown-item" href="#">Santa Cruz</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Petrópolis</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Calendário Escolar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Boletim Online</a>
+        </li>
+      </ul>
+    </div>
+      
+      
+      
+      <div class="row" style="padding-top: 40px;">
+      <div class="col-sm-1">
+    </div>
+      <div class="col-sm-10" style="background-color: rgb(104, 104, 177); border-radius: 10px;">
+        <form>
+            <div class="form-group">
+              <label for="name" style="padding-top: 5px;">Nome do aluno</label>
+              <input type="text" class="form-control" id="name">
+            </div>
+            <div class="form-group">
+              <label for="notateste">Nota do teste</label>
+              <input type="text" class="form-control" id="notateste">
+            </div>
+            <div class="form-group">
+                <label for="notaprova">Nota da prova</label>
+                <input type="text" class="form-control" id="notaprova">
+              </div>
+            <button type="button" class="btn btn-primary" id="verificar" style="background-color: white; color: blue;"><strong>Verificar</strong></button>
+            <div id="res" style="padding-top: 10px; color: white; font-size: 20px;"><strong>Resultado:</strong></div>
+          </form> 
+      </div>
+      <div class="col-sm-">
+        </div>
+      </div>
+          
+          <div class="row" id="footer" style="height: 100px; background: rgb(84, 84, 156); margin-top: 40px; padding-top: 20px;">
+            
+            <div class="col" style="text-align: center;">
+              <h5>Campo Grande</h5>
+              <p>Rua Alfredo Gomes, 15</p>
+            </div>
+            <div class="col" style="text-align: center;">
+              <h5>Barra da Tijuca</h5>
+              <p>Rua Laura de Abreu, 256</p>
+            </div>
+            <div class="col" style="text-align: center;">
+              <h5>Santa Cruz</h5>
+              <p>Rua Girassol, 25</p>
+            </div>
+            <div class="col" style="text-align: center;">
+              <h5>Petrópolis</h5>
+              <p>Avenida Imperatriz, 164</p>
+            </div>
+            
+          
+           
+          </div>
+            
+
+       
+    
+ 
+ 
+
+  </div>
+  </div>
+
+  
+    <script>
+ 
+  document.getElementById("verificar").addEventListener("click", function(){
+  var nt = document.getElementById("notateste").value
+  var np = document.getElementById("notaprova").value
+  var res = document.getElementById("res")
+  if (nt.length > 0 || np.length > 0 || nt <= 10 || np <= 10) {
+    aprovacao(nt, np, res)
+  } else {
+    window.alert('Por favor preencha os campos corretamente!')
+    return false;
+  }
+});
+
+function aprovacao(nt, np, res) {
+  var media = (parseFloat(nt) + parseFloat(np)) / 2
+  res.textContent = `A média do aluno é ${media}. `
+  if (media >= 7) {
+    res.textContent += `Aluno Aprovado!`
+  } else {
+    res.textContent += `Aluno reprovado!`
+  } 
+}
+
+      
+
+
+
+    </script>
+</body>
+</html>
